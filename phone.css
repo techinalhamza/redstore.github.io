@@ -1,0 +1,113 @@
+@media (max-width:1400px) {
+    .feature-category{
+        gap: 4rem;
+    }
+}
+@media (max-width:920px) {
+    body {
+        position: relative;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+
+    #menu {
+        display: block;
+
+    }
+    .navbar{
+        position: relative;
+    }
+
+    nav {
+        position: absolute;
+        right: -100%;
+        top: 8%;
+        background: #0009;
+        width: 40%;
+        padding: 20px;
+        border-radius: 5px;
+        transition: 1s ease;
+        z-index: 20;
+    }
+
+    nav ul li {
+        display: block;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    nav ul li a {
+        color: #fff;
+
+    }
+
+    .row {
+       flex-direction: column;
+       text-align: center;
+    }
+
+    .col {
+        width: 100vw;
+    }
+    .account .row .col{
+        flex-direction:column-reverse;
+    }
+    .form-container{
+        margin: auto;
+        margin-bottom: 4rem;
+        margin-top: 4rem;
+    }
+   
+}
+
+@media (max-width:600px) {
+    nav {
+        width: 100%;
+    }
+    .row{
+        padding: 0 5px;
+    }
+    .col h1{
+        /* text-align: left; */
+        font-size: 3rem;
+    }
+    .container{
+        padding: 0%;
+    }
+    .navbar .logo img{
+        width: 7rem;
+    }
+    .nav-img img{
+        width: 20px;
+        height: 20px;
+    }
+    
+    .sml-container{
+        /* border: 2px solid; */
+        margin:0;    
+    }
+    .offer-content img{
+        width: 20rem;
+        height: 25rem;
+    }
+    .review-container .card{
+        margin: 0 2rem;
+    }
+    .product-title h1{
+        font-size: 4vw;
+        }
+   .single-product h1{
+    font-size: 2rem;
+   }
+   .feature-category{
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+   }
+   .latest-category{
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+
+   }
+  
+}
