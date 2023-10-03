@@ -130,7 +130,7 @@ nav ul li a {
 
 .category {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 10rem));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 10rem));
     gap: 1rem;
     justify-content: center;
     /* border: 2px solid; */
