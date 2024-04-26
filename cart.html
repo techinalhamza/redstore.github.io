@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="cart-containerr">
+      <div class="container">
+        <div class="navbar">
+          <div class="logo">
+            <img src="images/logo.png" alt="" />
+          </div>
+          <nav>
+            <ul>
+              <li><a href="index.html">home</a></li>
+              <li><a href="products.html">products</a></li>
+              <li><a href="#">about</a></li>
+              <li><a href="#">contact</a></li>
+              <li><a href="account.html">account</a></li>
+            </ul>
+          </nav>
+          <div class="nav-img">
+            <img src="images/cart.png" alt="" width="30px" height="30px" />
+            <div class="cart-count">0</div>
+            <img
+              src="images/menu.png"
+              alt=""
+              width="30px"
+              height="30px"
+              id="menu"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- ----------------------------------------------------------------------------- -->
+
+      <section class="cart_wrapper">
+        <div class="cart_lists">
+          <div class="cart_title">
+            <span class="material-icons-outlined">local_mall</span>
+            Your Shopping Cart
+          </div>
+
+          <div class="cart_list_wrap">
+            <div class="cart_responsive cart-items"></div>
+            <div class="footer">
+              <div class="back_cart">
+                <a href="#back">
+                  <span class="material-icons-outlined">west</span>
+                  Back to Shop
+                </a>
+              </div>
+              <div class="subtotal">
+                <label>Subtotal: </label>
+                <strong>$2451.00</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="data.js"></script>
+    <!-- <script src="script.js"></script> -->
+  </body>
+</html>
