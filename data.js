@@ -72,7 +72,7 @@ const addProducts = () => {
     var clutter = "";
     data.map(
       (val, index) =>
-        (clutter += `<a href="product-detail.html"><div class="feature-item">
+        (clutter += `<div class="feature-item">
                 <div class="img">
                 <img src=${val.image} alt=""></div>
                 <div class="feature-content">
@@ -85,21 +85,20 @@ const addProducts = () => {
                     <p>${"$" + val.price}</p>
                     <button data-index=${index} class='addtocart'>add to cart</button>
                 </div>
-            </div></a>`)
+            </div>`)
     );
     featureCategory.innerHTML = clutter;
-    //   console.log(clutter);
   }
 };
 const addToCart = () => {
   if (featureCategory) {
     featureCategory.addEventListener("click", (e) => {
       if (e.target.classList.contains("addtocart")) {
-        console.log(e.target.dataset.index);
+        const clickedProductIndex = e.target.dataset.index;
+        const clickProduct = data[clickedProductIndex];
         cart.push(data[e.target.dataset.index]);
-        updateCartCount();
-        // showProductsInCart();
         localStorage.setItem("cartItem", JSON.stringify(cart));
+        updateCartCount();
       }
     });
   }
@@ -109,19 +108,19 @@ const getItemFromLocalStorage = () => {
   const getItem = localStorage.getItem("cartItem");
   if (getItem) {
     let carrt = JSON.parse(getItem);
+    updateCartCount();
     return carrt;
   } else {
     return [];
   }
-  updateCartCount();
 };
 
 const showProductsInCart = () => {
   if (cartResponsive) {
     let clutter = "";
     cart.map(
-      (val) =>
-        (clutter += ` <div class="tr_item">
+      (val, index) =>
+        (clutter += ` <div class="tr_item cart-Box">
                 <div class="td_item item_img">
                   <img
                     src=${val.image}
@@ -136,33 +135,56 @@ const showProductsInCart = () => {
                   <label>Blue</label>
                 </div>
                 <div class="td_item item_qty">
-                  <select>
+                <input type='number' class="quantity-input" value="1" data-index="${index}">
+                 <!--<select>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                     <option value="more">More</option>
-                  </select>
+                  </select>-->
                 </div>
                 <div class="td_item item_price">
                   <label>${"$" + val.price}</label>
                 </div>
                 <div class="td_item item_remove">
-                  <span class="material-icons-outlined">close</span>
+                  <span class="material-icons-outlined remove-item "data-index="${index}" >close</span>
                 </div>
               </div>`)
     );
-
+    // onclick = "removeCartItem()";
     cartResponsive.innerHTML = clutter;
+
+    attachRemoveItemEvent();
   }
 };
 
 const updateCartCount = () => {
   if (cartCount) {
-    cartCount.innerHTML = cart.length;
+    const getCartCount = localStorage.getItem("cartItem");
+    const lCartCount = JSON.parse(getCartCount);
+    if (lCartCount) {
+      cartCount.innerHTML = lCartCount.length;
+    }
   }
 };
+
+const attachRemoveItemEvent = () => {
+  const removeButtons = document.querySelectorAll(".remove-item");
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const filterCart = cart.filter((val, ind) => ind !== index);
+      localStorage.setItem("cartItem", JSON.stringify(filterCart));
+      cart = filterCart;
+      showProductsInCart();
+      updateCartCount();
+      console.log(filterCart);
+    });
+  });
+};
+
 var cart = getItemFromLocalStorage();
 showProductsInCart();
 addProducts();
