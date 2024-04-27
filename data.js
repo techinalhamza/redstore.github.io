@@ -96,7 +96,7 @@ const addToCart = () => {
       if (e.target.classList.contains("addtocart")) {
         const clickedProductIndex = e.target.dataset.index;
         const clickProduct = data[clickedProductIndex];
-        cart.push(data[e.target.dataset.index]);
+        cart.push({ ...data[e.target.dataset.index], quantity: 1 });
         localStorage.setItem("cartItem", JSON.stringify(cart));
         updateCartCount();
       }
@@ -117,10 +117,11 @@ const getItemFromLocalStorage = () => {
 
 const showProductsInCart = () => {
   if (cartResponsive) {
-    let clutter = "";
-    cart.map(
-      (val, index) =>
-        (clutter += ` <div class="tr_item cart-Box">
+    if (cart.length > 0) {
+      let clutter = "";
+      cart.map(
+        (val, index) =>
+          (clutter += ` <div class="tr_item cart-Box">
                 <div class="td_item item_img">
                   <img
                     src=${val.image}
@@ -134,17 +135,18 @@ const showProductsInCart = () => {
                 <div class="td_item item_color">
                   <label>Blue</label>
                 </div>
-                <div class="td_item item_qty">
-                <input type='number' class="quantity-input" value="1" data-index="${index}">
-                 <!--<select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="more">More</option>
-                  </select>-->
-                </div>
+               <!-- <div class="td_item item_qty ">
+                <input type='number' class="quantity-input" value="1" data-index="${index}">              
+                </div>--> 
+
+                <div class="quantity"> 
+                <div class="qtyValue">1</div>
+                <div class="arrows">
+                
+                <i class="fa fa-sort-asc arrowUp" data-index=${index}></i>
+                <i class="fa fa-caret-down arrowDown" data-index=${index}></i>
+                
+                </div></div>
                 <div class="td_item item_price">
                   <label>${"$" + val.price}</label>
                 </div>
@@ -152,10 +154,13 @@ const showProductsInCart = () => {
                   <span class="material-icons-outlined remove-item "data-index="${index}" >close</span>
                 </div>
               </div>`)
-    );
-    // onclick = "removeCartItem()";
-    cartResponsive.innerHTML = clutter;
-
+      );
+      // onclick = "removeCartItem()";
+      cartResponsive.innerHTML = clutter;
+    } else {
+      cllutter = `<div class="empty-cart-message">Your cart is empty<img src="images/cart.png" alt="" class='empty-cart-img'/>.</div> `;
+      cartResponsive.innerHTML = cllutter;
+    }
     attachRemoveItemEvent();
   }
 };
@@ -185,7 +190,63 @@ const attachRemoveItemEvent = () => {
   });
 };
 
+const updateQty = () => {
+  const arrowUp = document.querySelectorAll(".arrowUp");
+  const arrowDown = document.querySelectorAll(".arrowDown");
+
+  arrowUp.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+      console.log(e.target.dataset.index);
+      const index = parseInt(e.target.dataset.index);
+      const product = cart[index];
+      product.quantity = (product.quantity || 1) + 1;
+      const qtyValue =
+        arrow.parentElement.parentElement.querySelector(".qtyValue"); // Select qtyValue for the specific product
+      qtyValue.textContent = product.quantity;
+
+      const priceLabel = arrow
+        .closest(".tr_item")
+        .querySelector(".item_price label");
+      const newPrice = product.quantity * product.price;
+      priceLabel.textContent = "$" + newPrice.toFixed(0); // Assuming price is stored as a decima
+
+      localStorage.setItem("cartItem", JSON.stringify(cart));
+    });
+  });
+
+  arrowDown.forEach((arrow) => {
+    arrow.addEventListener("click", (e) => {
+      const index = parseInt(e.target.dataset.index);
+      const product = cart[index];
+      if (product.quantity > 0) {
+        product.quantity -= 1;
+        const qtyValue =
+          arrow.parentElement.parentElement.querySelector(".qtyValue"); // Select qtyValue for the specific product
+        qtyValue.textContent = product.quantity;
+
+        const priceLabel = arrow
+          .closest(".tr_item")
+          .querySelector(".item_price label");
+        const newPrice = product.quantity * product.price;
+        priceLabel.textContent = "$" + newPrice.toFixed(0); // Assuming price is stored as a decimal
+      }
+    });
+  });
+};
+
+const clearCompCart = () => {
+  const clearCart = document.querySelector(".clear-cart");
+  clearCart.addEventListener("click", () => {
+    localStorage.removeItem("cartItem");
+    cart = [];
+
+    showProductsInCart();
+  });
+};
+
 var cart = getItemFromLocalStorage();
 showProductsInCart();
 addProducts();
 addToCart();
+updateQty();
+clearCompCart();

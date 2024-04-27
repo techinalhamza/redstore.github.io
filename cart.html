@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
@@ -40,18 +47,20 @@
       <section class="cart_wrapper">
         <div class="cart_lists">
           <div class="cart_title">
-            <span class="material-icons-outlined">local_mall</span>
-            Your Shopping Cart
+            <div class="cart_title">
+              <span class="material-icons-outlined">local_mall</span>
+              <h3>Your Shopping Cart</h3>
+            </div>
+            <div class="clear-cart">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </div>
           </div>
 
           <div class="cart_list_wrap">
             <div class="cart_responsive cart-items"></div>
-            <div class="footer">
+            <div class="footerr">
               <div class="back_cart">
-                <a href="#back">
-                  <span class="material-icons-outlined">west</span>
-                  Back to Shop
-                </a>
+                <a href="products.html"> Back to Shop </a>
               </div>
               <div class="subtotal">
                 <label>Subtotal: </label>

@@ -571,7 +571,51 @@ form .btn {
   background: #ffdede;
   min-height: 100vh;
 }
-
+.quantity{
+  background: #E5E9EA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid #ccc;
+}
+.arrows {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 10px;
+}
+.clear-cart{
+  margin-left: auto;
+}
+.cart_title{
+  /* display: flex !important; */
+}
+.empty-cart-message{
+  width: 100%;
+  text-align: center;
+  margin: 5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty-cart-img{
+width: 3rem;
+}
+.footerr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ff5039;
+  padding: 1rem;
+}
+.back_cart a{
+  text-decoration: none;
+  padding: .5rem 1rem;
+  margin-bottom: 2rem;
+  color: #fff;
+}
 /* @mixin size($point) {
     @if $point ==lg-device {
         @media (min-width: 1024px) and (max-width: 1600px) {
