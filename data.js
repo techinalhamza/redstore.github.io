@@ -110,7 +110,9 @@ const addProducts = () => {
       (val, index) =>
         (clutter += `<div class="feature-item">
                 <div class="img">
-                <img src=${val.image} alt=""></div>
+                <img src=${
+                  val.image
+                } alt="" class="product-img" data-index=${index}></div>
                 <div class="feature-content">
                     <h3>${val.productName}</h3>
                     <i class="fa-solid fa-star"></i>
@@ -124,6 +126,12 @@ const addProducts = () => {
             </div>`)
     );
     allProducts.innerHTML = clutter;
+
+    featureCategory.addEventListener("click", (e) => {
+      if (e.target.classList.contains("product-img")) {
+        console.log(e.target.dataset.index);
+      }
+    });
   }
 };
 
@@ -131,7 +139,6 @@ const addProducts = () => {
 const addToCart = () => {
   if (featureCategory) {
     featureCategory.addEventListener("click", (e) => {
-      alert("hh");
       if (e.target.classList.contains("addtocart")) {
         console.log(e.target);
         const clickedProductIndex = e.target.dataset.index;
