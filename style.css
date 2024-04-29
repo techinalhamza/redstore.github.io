@@ -570,9 +570,10 @@ form .btn {
 .cart-containerr {
   background: #ffdede;
   min-height: 100vh;
+  max-height: max-content;
 }
-.quantity{
-  background: #E5E9EA;
+.quantity {
+  background: #e5e9ea;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -586,13 +587,13 @@ form .btn {
   justify-content: center;
   height: 10px;
 }
-.clear-cart{
+.clear-cart {
   margin-left: auto;
 }
-.cart_title{
+.cart_title {
   /* display: flex !important; */
 }
-.empty-cart-message{
+.empty-cart-message {
   width: 100%;
   text-align: center;
   margin: 5rem 0;
@@ -600,21 +601,57 @@ form .btn {
   align-items: center;
   justify-content: center;
 }
-.empty-cart-img{
-width: 3rem;
+.empty-cart-img {
+  width: 3rem;
 }
 .footerr {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #ff5039;
+  /* background: #ff5039; */
   padding: 1rem;
 }
-.back_cart a{
+.back_cart a {
   text-decoration: none;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   margin-bottom: 2rem;
   color: #fff;
+  background: #ff5039;
+  border-radius: 4px;
+}
+.checkout_list {
+  width: 330px;
+  flex: 0 0 330px;
+
+  background: #ffdede;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.checkout-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid; */
+  padding: 1rem 0;
+  width: 100%;
+}
+.checkout-btn {
+  background: #ff5039;
+  margin-top: 1rem;
+  border-radius: 4px;
+  width: 100%;
+}
+.checkout-btn button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem 0;
+  text-align: center;
+  width: 100%;
 }
 /* @mixin size($point) {
     @if $point ==lg-device {
@@ -700,6 +737,7 @@ body {
   max-height: 800px;
   display: flex;
   flex-wrap: wrap;
+  /* flex-direction: column; */
   background-color: white;
   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.4);
   margin: 30px;
@@ -721,8 +759,9 @@ body {
   .cart_lists {
     background-color: #ecf0f1;
     padding: 30px;
-    width: calc(100% - 330px);
-    flex: 0 0 calc(100% - 330px);
+    width: 70%;
+    flex: 0 0 70%;
+    flex-grow: 1;
 
     /* @include size(md-device) {
             width: 100%;
@@ -787,7 +826,8 @@ body {
 
         .tr_item {
           display: grid;
-          grid-template-columns: 80px 3fr 1fr 1fr 120px 50px;
+          /* grid-template-columns: 80px 3fr 1fr 1fr 120px 50px; */
+          grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
           margin-bottom: 15px;
           transition: all 0.3s linear;
           position: relative;
